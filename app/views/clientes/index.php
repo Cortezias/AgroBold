@@ -12,7 +12,7 @@
         <h1 class="text-center">Cadastro de Clientes</h1>
         <div class="row mb-3">
             <div class="col-md-8">
-                <form class="form-inline" action="index.php" method="get">
+                <form class="form-inline" id="search-form">
                     <input type="hidden" name="action" value="search">
                     <div class="form-group mx-sm-3 mb-2">
                         <label for="estado" class="sr-only">Estado</label>
@@ -29,7 +29,7 @@
                 <a href="index.php?action=create" class="btn btn-primary">Adicionar Cliente</a>
             </div>
         </div>
-        <table class="table table-striped">
+        <table class="table table-striped" id="clientes-table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -44,15 +44,15 @@
             <tbody>
                 <?php foreach ($clientes as $cliente): ?>
                     <tr>
-                        <td><?= htmlspecialchars($cliente['id']) ?></td>
-                        <td><?= htmlspecialchars($cliente['nome']) ?></td>
-                        <td><?= htmlspecialchars($cliente['email']) ?></td>
-                        <td><?= htmlspecialchars($cliente['telefone']) ?></td>
-                        <td><?= htmlspecialchars($cliente['estado']) ?></td>
-                        <td><?= htmlspecialchars($cliente['cidade']) ?></td>
+                        <td><?= $cliente['id'] ?></td>
+                        <td><?= $cliente['nome'] ?></td>
+                        <td><?= $cliente['email'] ?></td>
+                        <td><?= $cliente['telefone'] ?></td>
+                        <td><?= $cliente['estado'] ?></td>
+                        <td><?= $cliente['cidade'] ?></td>
                         <td>
-                            <a href="index.php?action=edit&id=<?= htmlspecialchars($cliente['id']) ?>" class="btn btn-warning btn-sm">Editar</a>
-                            <a href="index.php?action=delete&id=<?= htmlspecialchars($cliente['id']) ?>" class="btn btn-danger btn-sm">Excluir</a>
+                            <a href="index.php?action=edit&id=<?= $cliente['id'] ?>" class="btn btn-warning btn-sm">Editar</a>
+                            <a href="index.php?action=delete&id=<?= $cliente['id'] ?>" class="btn btn-danger btn-sm">Excluir</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
