@@ -14,14 +14,15 @@ $(document).ready(function() {
         }
     });
 
-    // AJAX request for search by state
+    // AJAX request for search by state and city
     $('form[action="index.php"]').on('submit', function(e) {
         e.preventDefault();
         const estado = $('#estado').val();
+        const cidade = $('#cidade').val();
         $.ajax({
             url: 'index.php?action=search',
             method: 'GET',
-            data: { estado: estado },
+            data: { estado: estado, cidade: cidade },
             success: function(response) {
                 $('tbody').html(response);
             }

@@ -27,6 +27,10 @@
                 <label for="estado">Estado</label>
                 <input type="text" class="form-control" id="estado" name="estado" required>
             </div>
+            
+            <label for="cidade">Cidade:</label>
+            <input type="text" id="cidade" name="cidade" required>
+
             <button type="submit" class="btn btn-success">Salvar</button>
             <a href="index.php" class="btn btn-secondary">Cancelar</a>
         </form>

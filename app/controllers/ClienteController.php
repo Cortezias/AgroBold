@@ -50,6 +50,7 @@ class ClienteController {
         $cliente = new Cliente($this->pdo);
         $cliente->create($_POST);
         header('Location: index.php');
+        exit();
     }
 
     public function edit() {
@@ -64,6 +65,7 @@ class ClienteController {
         $cliente = new Cliente($this->pdo);
         $cliente->update($id, $_POST);
         header('Location: index.php');
+        exit();
     }
 
     public function delete() {
@@ -71,12 +73,15 @@ class ClienteController {
         $cliente = new Cliente($this->pdo);
         $cliente->delete($id);
         header('Location: index.php');
+        exit();
     }
 
     public function search() {
-        $estado = $_GET['estado'];
+        $estado = $_GET['estado'] ?? '';
+        $cidade = $_GET['cidade'] ?? '';
+        
         $cliente = new Cliente($this->pdo);
-        $clientes = $cliente->getByState($estado);
+        $clientes = $cliente->getByStateAndCity($estado, $cidade);
         include 'app/views/clientes/index.php';
     }
 }

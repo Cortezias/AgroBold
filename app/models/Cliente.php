@@ -1,5 +1,4 @@
 <?php
-
 class Cliente {
     private $pdo;
 
@@ -19,14 +18,26 @@ class Cliente {
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare("INSERT INTO clientes (nome, email, telefone, estado) VALUES (:nome, :email, :telefone, :estado)");
-        $stmt->execute($data);
+        $stmt = $this->pdo->prepare("INSERT INTO clientes (nome, email, telefone, estado, cidade) VALUES (:nome, :email, :telefone, :estado, :cidade)");
+        $stmt->execute([
+            'nome' => $data['nome'],
+            'email' => $data['email'],
+            'telefone' => $data['telefone'],
+            'estado' => $data['estado'],
+            'cidade' => $data['cidade']
+        ]);
     }
 
     public function update($id, $data) {
-        $stmt = $this->pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, estado = :estado WHERE id = :id");
-        $data['id'] = $id;
-        $stmt->execute($data);
+        $stmt = $this->pdo->prepare("UPDATE clientes SET nome = :nome, email = :email, telefone = :telefone, estado = :estado, cidade = :cidade WHERE id = :id");
+        $stmt->execute([
+            'id' => $id,
+            'nome' => $data['nome'],
+            'email' => $data['email'],
+            'telefone' => $data['telefone'],
+            'estado' => $data['estado'],
+            'cidade' => $data['cidade']
+        ]);
     }
 
     public function delete($id) {
@@ -34,9 +45,12 @@ class Cliente {
         $stmt->execute(['id' => $id]);
     }
 
-    public function getByState($estado) {
-        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE estado = :estado");
-        $stmt->execute(['estado' => $estado]);
+    public function getByStateAndCity($estado, $cidade) {
+        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE estado LIKE :estado AND cidade LIKE :cidade");
+        $stmt->execute([
+            'estado' => "%$estado%",
+            'cidade' => "%$cidade%"
+        ]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
