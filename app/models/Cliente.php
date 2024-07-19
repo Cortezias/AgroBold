@@ -33,5 +33,11 @@ class Cliente {
         $stmt = $this->pdo->prepare("DELETE FROM clientes WHERE id = :id");
         $stmt->execute(['id' => $id]);
     }
+
+    public function getByState($estado) {
+        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE estado = :estado");
+        $stmt->execute(['estado' => $estado]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

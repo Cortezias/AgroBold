@@ -10,8 +10,20 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">Cadastro de Clientes</h1>
-        <div class="text-right mb-3">
-            <a href="index.php?action=create" class="btn btn-primary">Adicionar Cliente</a>
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <form class="form-inline" action="index.php" method="get">
+                    <input type="hidden" name="action" value="search">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="estado" class="sr-only">Estado</label>
+                        <input type="text" class="form-control" id="estado" name="estado" placeholder="Buscar por Estado">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </form>
+            </div>
+            <div class="col-md-4 text-right">
+                <a href="index.php?action=create" class="btn btn-primary">Adicionar Cliente</a>
+            </div>
         </div>
         <table class="table table-striped">
             <thead>
