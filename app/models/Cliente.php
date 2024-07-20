@@ -45,11 +45,12 @@ class Cliente {
         $stmt->execute(['id' => $id]);
     }
 
-    public function getByStateAndCity($estado, $cidade) {
-        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE estado LIKE :estado AND cidade LIKE :cidade");
+    public function getByStateAndCity($estado, $cidade, $nome = '') {
+        $stmt = $this->pdo->prepare("SELECT * FROM clientes WHERE estado LIKE :estado AND cidade LIKE :cidade AND nome LIKE :nome");
         $stmt->execute([
             'estado' => "%$estado%",
-            'cidade' => "%$cidade%"
+            'cidade' => "%$cidade%",
+            'nome' => "%$nome%"
         ]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

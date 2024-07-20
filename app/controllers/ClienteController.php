@@ -79,9 +79,10 @@ class ClienteController {
     public function search() {
         $estado = $_GET['estado'] ?? '';
         $cidade = $_GET['cidade'] ?? '';
+        $nome = $_GET['nome'] ?? '';
         
         $cliente = new Cliente($this->pdo);
-        $clientes = $cliente->getByStateAndCity($estado, $cidade);
+        $clientes = $cliente->getByStateAndCity($estado, $cidade, $nome);
         include 'app/views/clientes/index.php';
     }
 }

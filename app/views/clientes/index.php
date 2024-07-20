@@ -34,6 +34,15 @@
                             <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Buscar por Cidade">
                         </div>
                     </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="cidade" class="sr-only">Nome</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="cidade" name="nome" placeholder="Buscar por Nome">
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i> Buscar</button>
                 </form>
             </div>
